@@ -1,1 +1,111 @@
-!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=0)}([function(e,t,n){const{getComments:r,filterComments:o,render:a}=n(1);let c=[],l="id_asc",d="",i=0,u=10;const p=document.getElementById("sortBy"),s=document.getElementById("search");const m=e=>{const{value:t,name:n}=e.target;"sortBy"===n?(l=t,""===t&&(l="id_asc")):d=t;let r=o(c,d,l,u);a(r,{page:i,perpage:u})};document.onload=async function(){c=await r("http://jsonplaceholder.typicode.com/comments"),p.addEventListener("change",m),s.addEventListener("change",m);let e=o(c,d,l,u);a(e,{page:i,perpage:u})}()},function(e,t){const n=(e=[],t)=>{let n=[],r=t.split("_")[0],o=t.split("_")[1];return n=[...e].sort((e,t)=>{let n=e[r],o=t[r];return n>o?1:o>n?-1:0}),"desc"===o&&n.reverse(),n},r=(e,t)=>e.filter(e=>String(e.body).toLowerCase().includes(t.toLowerCase())),o=(e,t=10)=>{let n=[];for(;0!==e.length;)n.push(e.splice(0,t));return n},a=(e,t={page:0,perpage:10})=>{const n=document.getElementById("comments"),r=document.getElementById("pagination");n.innerHTML="",r.innerHTML="";const{page:o,perpage:c}=t;e.forEach(({},t)=>{let n=document.createElement("button");n.disabled=o===t,n.innerText=t+1,n.value=t,n.addEventListener("click",()=>{a(e,{page:t,perpage:c})}),r.appendChild(n)}),e.length>0&&e[o].forEach((e,t)=>{let r=document.createElement("tr"),a=document.createElement("td");a.innerText=o*c+(t+1),a.className="text-center",r.appendChild(a);let l=document.createElement("td");l.innerText=e.id,l.className="text-center",r.appendChild(l);let d=document.createElement("td");d.innerText=e.name||"-",r.appendChild(d);let i=document.createElement("td");i.innerText=e.email||"-",r.appendChild(i);let u=document.createElement("td");u.innerText=e.body||"-",r.appendChild(u),n.appendChild(r)})};e.exports={getComments:async e=>{let t=[];return await fetch(e).then(e=>(e=>e.json())(e)).then(e=>t=e).catch(e=>console.log(e)),t},filterComments:(e=[],t,a,c)=>{let l=n(e,a);return""!==t&&(l=r(l,t)),o(l,c)},paginateData:o,render:a}}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/app.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./src/js/app.js":
+/*!***********************!*\
+  !*** ./src/js/app.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("const { getComments, filterComments, render } = __webpack_require__(/*! ./app.modules */ \"./src/js/app.modules.js\")\n\nlet comments = []\nlet sort = \"id_asc\"\nlet keyword = \"\"\nlet page = 0\nlet perpage = 10\n\nconst sortBy = document.getElementById(\"sortBy\")\nconst searchElem = document.getElementById(\"search\")\n\nasync function init() {\n  comments = await getComments('http://jsonplaceholder.typicode.com/comments')\n  sortBy.addEventListener(\"change\", applyFilter)\n  searchElem.addEventListener(\"change\", applyFilter)\n  let data = filterComments(comments, keyword, sort, perpage)\n  render(data, { page, perpage })\n}\n\nconst applyFilter = (e) => {\n  const { value, name } = e.target\n  if (name === \"sortBy\") {\n    sort = value\n    if (value === \"\") {\n      sort = \"id_asc\"\n    }\n  } else {\n    keyword = value\n    page = 0\n  }\n  let data = filterComments(comments, keyword, sort, perpage)\n  render(data, { page, perpage })\n}\n\ndocument.onload = init()\n\n\n//# sourceURL=webpack:///./src/js/app.js?");
+
+/***/ }),
+
+/***/ "./src/js/app.modules.js":
+/*!*******************************!*\
+  !*** ./src/js/app.modules.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("const toJson = (data) => {\n  return data.json()\n}\n\nconst getComments = async (url) => {\n  let result = []\n  await fetch(url)\n  .then((res) => toJson(res))\n  .then((data) => result = data)\n  .catch((err) => console.log(err))\n  return result\n}\n\nconst filterComments = (data = [], keyword, sort, perpage) => {\n  let sorted = sortComments(data, sort)\n  // search\n  if (keyword !== \"\") {\n    sorted = searchComments(sorted, keyword)\n  }\n  return paginateData(sorted, perpage)\n}\n\nconst sortComments = (data = [], sort) => {\n  let sorted = []\n  let sortKey = sort.split(\"_\")[0]\n  let az = sort.split(\"_\")[1]\n  sorted = [...data].sort((a, b) => {\n    let valueA = a[sortKey]\n    let valueB = b[sortKey]\n\n    if (valueA > valueB) {\n      return 1\n    }\n\n    if (valueB > valueA) {\n      return -1\n    }\n\n    return 0\n  })\n\n  if (az === \"desc\") {\n    sorted.reverse()\n  }\n\n  return sorted\n}\n\nconst searchComments = (data, keyword) => {\n  return data.filter((item) => String(item['body']).toLowerCase().includes(keyword.toLowerCase()))\n}\n\nconst paginateData = (data, limit = 10) => {\n  let pagination = []\n  while (data.length !== 0) {\n    pagination.push(data.splice(0, limit))\n  }\n  return pagination\n}\n\nconst render = (data, page_setting = { page: 0, perpage: 10 }) => {\n  const commentsElem = document.getElementById(\"comments\")\n  const paginationElem = document.getElementById(\"pagination\")\n  commentsElem.innerHTML = \"\"\n  paginationElem.innerHTML = \"\"\n\n  const { page, perpage } = page_setting\n\n  data.forEach(({}, i) => {\n    let newPageBtn = document.createElement(\"button\")\n    newPageBtn.disabled = page === i\n    newPageBtn.innerText = i + 1\n    newPageBtn.value = i\n    newPageBtn.addEventListener(\"click\", () => {\n      render(data, { page: i, perpage })\n    })\n\n    paginationElem.appendChild(newPageBtn)\n  })\n\n  data.length > 0 && data[page].forEach((item, i) => {\n    let newRow = document.createElement(\"tr\")\n\n    // no\n    let tdNo = document.createElement(\"td\")\n    tdNo.innerText = (page * perpage) + (i + 1)\n    tdNo.className = \"text-center\"\n    newRow.appendChild(tdNo)\n    \n    // id\n    let tdId = document.createElement(\"td\")\n    tdId.innerText = item.id\n    tdId.className = \"text-center\"\n    newRow.appendChild(tdId)\n\n    // name\n    let tdName = document.createElement(\"td\")\n    tdName.innerText = item.name || '-'\n    newRow.appendChild(tdName)\n\n    // email\n    let tdEmail = document.createElement(\"td\")\n    tdEmail.innerText = item.email || '-'\n    newRow.appendChild(tdEmail)\n\n    // body\n    let tdBody = document.createElement(\"td\")\n    tdBody.innerText = item.body || '-'\n    newRow.appendChild(tdBody)\n\n    commentsElem.appendChild(newRow)\n  })\n}\n\nmodule.exports = {\n  getComments,\n  filterComments,\n  paginateData,\n  render\n}\n\n\n//# sourceURL=webpack:///./src/js/app.modules.js?");
+
+/***/ })
+
+/******/ });

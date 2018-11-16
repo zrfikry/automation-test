@@ -26,6 +26,7 @@ const applyFilter = (e) => {
     }
   } else {
     keyword = value
+    page = 0
   }
   let data = filterComments(comments, keyword, sort, perpage)
   render(data, { page, perpage })
