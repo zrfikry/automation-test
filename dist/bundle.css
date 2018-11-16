@@ -2,6 +2,10 @@ body {
   font-family: 'Courier New', Courier, monospace;
 }
 
+table {
+  width: 100%;
+}
+
 table, th, td {
   border: 1px solid #ddd;
   border-spacing: 0;
@@ -22,6 +26,11 @@ th, td {
 
 .text-center {
   text-align: center;
+}
+
+.empty-data {
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 #pagination {

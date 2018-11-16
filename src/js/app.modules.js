@@ -78,38 +78,48 @@ const render = (data, page_setting = { page: 0, perpage: 10 }) => {
     paginationElem.appendChild(newPageBtn)
   })
 
-  data.length > 0 && data[page].forEach((item, i) => {
+  if (data.length > 0) {
+    data[page].forEach((item, i) => {
+      let newRow = document.createElement("tr")
+  
+      // no
+      let tdNo = document.createElement("td")
+      tdNo.innerText = (page * perpage) + (i + 1)
+      tdNo.className = "text-center"
+      newRow.appendChild(tdNo)
+      
+      // id
+      let tdId = document.createElement("td")
+      tdId.innerText = item.id
+      tdId.className = "text-center"
+      newRow.appendChild(tdId)
+  
+      // name
+      let tdName = document.createElement("td")
+      tdName.innerText = item.name || '-'
+      newRow.appendChild(tdName)
+  
+      // email
+      let tdEmail = document.createElement("td")
+      tdEmail.innerText = item.email || '-'
+      newRow.appendChild(tdEmail)
+  
+      // body
+      let tdBody = document.createElement("td")
+      tdBody.innerText = item.body || '-'
+      newRow.appendChild(tdBody)
+  
+      commentsElem.appendChild(newRow)
+    })
+  } else {
     let newRow = document.createElement("tr")
-
-    // no
-    let tdNo = document.createElement("td")
-    tdNo.innerText = (page * perpage) + (i + 1)
-    tdNo.className = "text-center"
-    newRow.appendChild(tdNo)
-    
-    // id
-    let tdId = document.createElement("td")
-    tdId.innerText = item.id
-    tdId.className = "text-center"
-    newRow.appendChild(tdId)
-
-    // name
-    let tdName = document.createElement("td")
-    tdName.innerText = item.name || '-'
-    newRow.appendChild(tdName)
-
-    // email
-    let tdEmail = document.createElement("td")
-    tdEmail.innerText = item.email || '-'
-    newRow.appendChild(tdEmail)
-
-    // body
-    let tdBody = document.createElement("td")
-    tdBody.innerText = item.body || '-'
-    newRow.appendChild(tdBody)
-
+    let emptyTd = document.createElement("td")
+    emptyTd.innerText = "- NO DATA -"
+    emptyTd.colSpan = "5"
+    emptyTd.className = "text-center empty-data"
+    newRow.appendChild(emptyTd)
     commentsElem.appendChild(newRow)
-  })
+  }
 }
 
 module.exports = {
